@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const MongoClient = require('mongodb').MongoClient
 //const connectionString = "mongodb+srv://roccorockets:mamadegordos@cluster0.vsxkl.mongodb.net/projectsback?retryWrites=true&w=majority";
-
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
@@ -45,13 +44,13 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         // ...
       })
     app.post('/newlink', (req, res) => { 
-      res.send(res.json(req.body))
-     // res.send(req.body)
-     /* db.collection('userlinks').insertOne(req.body)
+     /* res.send(res.json(req.body))*/
+      res.send(req.body)
+      db.collection('userlinks').insertOne(res.json(req.body))
         .then(result => {
           console.log(result)
         })
-        .catch(error => console.error(error))*/
+        .catch(error => console.error(error))
     })
 
 

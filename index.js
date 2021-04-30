@@ -34,7 +34,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       /*  const cursor = db.collection('projects').find()
         console.log(cursor)
         res.send('3 ) Hello World')*/
-        var userName = request.params.name;
+
+        var userName = req.params.name;
         db.collection('userlinks').find({name:userName}).toArray()
         .then(results => {
          // console.log(results)

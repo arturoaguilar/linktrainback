@@ -29,7 +29,21 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         })
         .catch(error => console.error(error))
       // ...
+    }),
+    app.get('/links/:name', (req, res) => {
+      /*  const cursor = db.collection('projects').find()
+        console.log(cursor)
+        res.send('3 ) Hello World')*/
+        var userName = request.params.name;
+        db.collection('userlinks').find({name:userName}).toArray()
+        .then(results => {
+         // console.log(results)
+          res.send(results)
+        })
+        .catch(error => console.error(error))
+      // ...
     })
+
 
   })
 

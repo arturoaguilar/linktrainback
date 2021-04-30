@@ -2,14 +2,14 @@ const express = require('express');
 const app = express();
 const MongoClient = require('mongodb').MongoClient
 //const connectionString = "mongodb+srv://roccorockets:mamadegordos@cluster0.vsxkl.mongodb.net/projectsback?retryWrites=true&w=majority";
-const connectionString =process.env.MONGODB_URI;
+const connectionString = process.env.MONGODB_URI;
 
 app.get('/', (req, res) => {
-    res.send('Hello World')
+  res.send('Hello World')
 })
 
 app.get('/quotes', (req, res) => {
-    res.send('2 ) Hello World')
+  res.send('2 ) Hello World')
 })
 
 
@@ -22,27 +22,30 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       /*  const cursor = db.collection('projects').find()
         console.log(cursor)
         res.send('3 ) Hello World')*/
-        db.collection('userlinks').find().toArray()
+      db.collection('userlinks').find().toArray()
         .then(results => {
-         // console.log(results)
+          // console.log(results)
           res.send(results)
         })
         .catch(error => console.error(error))
       // ...
     }),
-    app.get('/links/:name', (req, res) => {
-      /*  const cursor = db.collection('projects').find()
-        console.log(cursor)
-        res.send('3 ) Hello World')*/
-
+      app.get('/links/:name', (req, res) => {
         var userName = req.params.name;
-        db.collection('userlinks').find({name:userName}).toArray()
-        .then(results => {
-         // console.log(results)
-          res.send(results)
+        db.collection('userlinks').find({ name: userName }).toArray()
+          .then(results => {
+            // console.log(results)
+            res.send(results)
+          })
+          .catch(error => console.error(error))
+        // ...
+      })
+    app.post('/newlink', (req, res) => {   
+      db.collection('userlinks').insertOne(req.body)
+        .then(result => {
+          console.log(result)
         })
         .catch(error => console.error(error))
-      // ...
     })
 
 

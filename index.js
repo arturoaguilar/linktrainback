@@ -40,12 +40,14 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           .catch(error => console.error(error))
         // ...
       })
-    app.post('/newlink', (req, res) => {   
-      db.collection('userlinks').insertOne(req.body)
+    app.post('/newlink', (req, res) => { 
+      console.log("Este es el body");
+      console.log(req.body);  
+     /* db.collection('userlinks').insertOne(req.body)
         .then(result => {
           console.log(result)
         })
-        .catch(error => console.error(error))
+        .catch(error => console.error(error))*/
     })
 
 

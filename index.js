@@ -41,8 +41,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         // ...
       })
     app.post('/newlink', (req, res) => { 
-      console.log("Este es el body");
-      console.log(req.body);  
+
+      res.send(req.body)
      /* db.collection('userlinks').insertOne(req.body)
         .then(result => {
           console.log(result)

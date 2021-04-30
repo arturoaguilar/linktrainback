@@ -22,7 +22,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     console.log('Connected to Database')
     const db = client.db('linktraindb')
 
-    app.get('/links', (req, res) => {
+    app.get('/links', cors(),(req, res) => {
       /*  const cursor = db.collection('projects').find()
         console.log(cursor)
         res.send('3 ) Hello World')*/
@@ -34,7 +34,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .catch(error => console.error(error))
       // ...
     }),
-      app.get('/links/:name', (req, res) => {
+      app.get('/links/:name',cors(),(req, res) => {
         var userName = req.params.name;
         db.collection('userlinks').find({ name: userName }).toArray()
           .then(results => {
@@ -44,7 +44,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           .catch(error => console.error(error))
         // ...
       })
-    app.post('/newlink', (req, res) => { 
+    app.post('/newlink',cors(),(req, res) => { 
      /* res.send(res.json(req.body))
      res.json(req.body)
       */

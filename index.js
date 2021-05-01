@@ -34,6 +34,15 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .catch(error => console.error(error))
       // ...
     }),
+    app.get('/user/:name',cors(),(req,res)=> {
+      var userName= req.params.name;
+      db.collection('users').find({ name: userName }).toArray()
+      .then(result =>{
+        res.send(result)
+      })
+      .catch(error=> console.error(error))
+
+    })
       app.get('/links/:name',cors(),(req, res) => {
         var userName = req.params.name;
         db.collection('userlinks').find({ name: userName }).toArray()

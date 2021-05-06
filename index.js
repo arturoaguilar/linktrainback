@@ -8,14 +8,6 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 
 const connectionString = process.env.MONGODB_URI;
 
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
-
-app.get('/quotes', (req, res) => {
-  res.send('2 ) Hello World')
-})
-
 
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
@@ -23,16 +15,14 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     const db = client.db('linktraindb')
 
     app.get('/links', cors(),(req, res) => {
-      /*  const cursor = db.collection('projects').find()
-        console.log(cursor)
-        res.send('3 ) Hello World')*/
+
       db.collection('userlinks').find().toArray()
         .then(results => {
-          // console.log(results)
+      
           res.send(results)
         })
         .catch(error => console.error(error))
-      // ...
+
     }),
     app.get('/user/:name',cors(),(req,res)=> {
       var userName= req.params.name;
@@ -47,16 +37,14 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         var userName = req.params.name;
         db.collection('userlinks').find({ name: userName }).toArray()
           .then(results => {
-            // console.log(results)
+
             res.send(results)
           })
           .catch(error => console.error(error))
-        // ...
+
       })
     app.post('/newlink',cors(),(req, res) => { 
-     /* res.send(res.json(req.body))
-     res.json(req.body)
-      */
+
       db.collection('userlinks').insertOne(req.body)
         .then(result => {
           console.log(result)

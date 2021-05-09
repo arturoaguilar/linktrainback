@@ -16,36 +16,36 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
     const db = client.db('linktraindb')
 
-    app.get('/links', cors(),(req, res) => {
+    app.get('/links', cors(), (req, res) => {
 
       db.collection('userlinks').find().toArray()
         .then(results => {
-      
+
           res.send(results)
         })
         .catch(error => console.error(error))
 
     }),
-    app.get('/user/:name',cors(),(req,res)=> {
-      var userName= req.params.name;
-      db.collection('users').find({ name: userName }).toArray()
-      .then(result =>{
-        res.send(result)
-      })
-      .catch(error=> console.error(error))
-
-    })
-      app.get('/links/:name',cors(),(req, res) => {
+      app.get('/user/:name', cors(), (req, res) => {
         var userName = req.params.name;
-        db.collection('userlinks').find({ name: userName }).toArray()
-          .then(results => {
-
-            res.send(results)
+        db.collection('users').find({ name: userName }).toArray()
+          .then(result => {
+            res.send(result)
           })
           .catch(error => console.error(error))
 
       })
-    app.post('/newlink',cors(),(req, res) => { 
+    app.get('/links/:name', cors(), (req, res) => {
+      var userName = req.params.name;
+      db.collection('userlinks').find({ name: userName }).toArray()
+        .then(results => {
+
+          res.send(results)
+        })
+        .catch(error => console.error(error))
+
+    })
+    app.post('/newlink', cors(), (req, res) => {
 
       db.collection('userlinks').insertOne(req.body)
         .then(result => {
@@ -53,6 +53,20 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           res.send(req.body)
         })
         .catch(error => console.error(error))
+    })
+
+    app.put('/updateonelinkposition', cors(), (req, res) => {
+      db.collection('userlinks').findOneAndUpdate({ _id: req.body._id }, {
+        $set: {
+          order: req.body.order
+        }
+      },
+        { upsert: true }
+      )
+      .then(result => {
+        console.log(result);
+        res.send(req.body)
+      });
     })
 
 

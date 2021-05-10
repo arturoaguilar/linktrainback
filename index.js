@@ -65,8 +65,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         }
       })
         .then(result => {
-          console.log(result);
-          res.send(req.body)
+         // console.log(result);
+          res.send(result)
 
           
         });
@@ -83,8 +83,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         { upsert: true }
       )
         .then(result => {
-          console.log(result);
-          res.send(req.body)
+          res.send(result)
         });
 
 

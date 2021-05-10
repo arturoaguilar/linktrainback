@@ -59,7 +59,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     app.put('/updateonelinkposition', cors(), (req, res) => {
 
       db.collection('userlinks').updateMany({ order: { $gt: req.body.order } }, {
-        $set: { order: order + 1 }
+        $set: {$inc: { order: 1 }} 
       })
         .then(result => {
           console.log(result);

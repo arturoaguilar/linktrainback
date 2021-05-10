@@ -62,12 +62,13 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       // db.collection('userlinks').updateMany({ order: { $gt: req.body.order }, _id: { $ne: ObjectId(req.body._id) } }, { 
         // { results: { $elemMatch: { $gte: 80, $lt: 85 } } }
         
-      db.collection('userlinks').updateMany({ order: { $gt: req.body.order } }, { 
+     /* db.collection('userlinks').updateMany({ order: { $gt: req.body.order } }, { 
         $set: { 
           $inc: { order: 6 } 
         }
-      })
-        .then(result => {
+      })*/
+      db.collection('userlinks').updateMany(gt("order",req.body.order ), inc("order", 3))
+      .then(result => {
          // console.log(result);
           res.send(result)
 

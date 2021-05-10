@@ -61,7 +61,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
       // db.collection('userlinks').updateMany({ order: { $gt: req.body.order }, _id: { $ne: ObjectId(req.body._id) } }, { 
         // { results: { $elemMatch: { $gte: 80, $lt: 85 } } }
-      db.collection('userlinks').updateMany({ code: { $ne: req.body.code } }, { 
+        
+      db.collection('userlinks').updateMany({ _id: { $in:[ObjectId("608adcafd603373d40df41c1"),ObjectId("6096ce24b07596001502e357")] } }, { 
         $set: { 
           $inc: { order: 6 } 
         }

@@ -66,9 +66,9 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           //res.send(req.body)
           res.send(result);
 
-          updatePrincipaLinkItem()
+          
         });
-
+      updatePrincipaLinkItem()
 
       function updatePrincipaLinkItem() {
         db.collection('userlinks').findOneAndUpdate({ _id: ObjectId(req.body._id) }, {

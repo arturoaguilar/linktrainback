@@ -63,7 +63,9 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       })
         .then(result => {
           console.log(result);
-          res.send(req.body)
+          //res.send(req.body)
+          res.send(result);
+
           updatePrincipaLinkItem()
         });
 

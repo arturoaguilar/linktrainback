@@ -56,7 +56,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     })
 
     app.put('/updateonelinkposition', cors(), (req, res) => {
-      db.collection('userlinks').findOneAndUpdate({ _id: req.body._id }, {
+      db.collection('userlinks').findOneAndUpdate({ _id: ObjectId(req.body._id )}, {
         $set: {
           order: req.body.order
         }

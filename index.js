@@ -76,7 +76,9 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     app.put('/updateotherlinksorder', cors(), (req, res) => {
 
       db.collection('userlinks').updateMany({ order: { $gt: req.body.order }, _id: { $ne: ObjectId(req.body._id) } }, { 
-        $set: { $inc: { order: 1 } }
+        $set: { 
+          $inc: { order: 1 } 
+        }
       })
         .then(result => {
           console.log(result);

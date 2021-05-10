@@ -57,17 +57,29 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     })
 
     app.put('/updateonelinkposition', cors(), (req, res) => {
-      db.collection('userlinks').findOneAndUpdate({ _id: ObjectId(req.body._id )}, {
-        $set: {
-          order: req.body.order
-        }
-      },
-        { upsert: true }
-      )
-      .then(result => {
-        console.log(result);
-        res.send(req.body)
-      });
+
+      db.collection('userlinks').updateMany({ order: { $gt: req.body.order } }, {
+        $set: { order: req.body.order + 1 }
+      })
+        .then(result => {
+          console.log(result);
+          res.send(req.body)
+          updatePrincipaLinkItem()
+        });
+      function updatePrincipaLinkItem() {
+        db.collection('userlinks').findOneAndUpdate({ _id: ObjectId(req.body._id) }, {
+          $set: {
+            order: req.body.order
+          }
+        },
+          { upsert: true }
+        )
+          .then(result => {
+            console.log(result);
+            res.send(req.body)
+          });
+
+      }
     })
 
 

@@ -62,7 +62,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       // db.collection('userlinks').updateMany({ order: { $gt: req.body.order }, _id: { $ne: ObjectId(req.body._id) } }, { 
       db.collection('userlinks').updateMany({ _id: { $ne: ObjectId(req.body._id) } }, { 
         $set: { 
-          $inc: { order: 1 } 
+           order: 5  
         }
       })
         .then(result => {

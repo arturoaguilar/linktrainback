@@ -78,7 +78,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
       }).then(result => {
 
-        res.send(result)
+        res.send(doc)
 
 
       });

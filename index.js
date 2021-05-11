@@ -74,7 +74,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .then(result => {
           res.send(result)
 
-          for (linkItem in result) {
+          for (let linkItem in result) {
             /*The update */
             db.collection('userlinks').findOneAndUpdate({ _id: ObjectId(linkItem._id) }, {
               $set: {
@@ -84,6 +84,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
               { upsert: true }
             )
               .then(result => {
+                console.log(`Estos son los id ${inkItem._id}`);
                 res.send(result)
               }).catch(error => console.error(error));
 

@@ -85,7 +85,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
             )
               .then(result => {
                 res.send(result)
-              });
+              }).catch(error => console.error(error));
 
             /*Fin del Update*/
           }
@@ -94,7 +94,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
 
 
-        });
+        }).catch(error => console.error(error));
 
 
       /*db.collection('userlinks').updateMany({ order: { $gt: req.body.order } }, {

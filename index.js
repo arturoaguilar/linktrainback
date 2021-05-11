@@ -67,17 +67,31 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
            $inc: { order: 6 } 
          }
        })*/
-      db.collection('userlinks').updateMany({ order: { $gt: req.body.order } }, {
-        $set: {
-          order: 6
-        }
-      })
-        .then(result => {
-          // console.log(result);
+
+      db.collection('userlinks').find({ order: { $gt: req.body.order } }).forEach(function (doc) {
+
+        db.collection('userlinks').updateMany({ _id: doc._id }, { $set: {
+          order: order + 1
+        } }).then(result => {
+
           res.send(result)
 
 
         });
+      
+      });
+
+
+      /*db.collection('userlinks').updateMany({ order: { $gt: req.body.order } }, {
+        $set: {
+          order: order + 1
+        }
+      }).then(result => {
+
+          res.send(result)
+
+
+        });*/
 
     })
 

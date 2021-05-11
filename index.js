@@ -84,7 +84,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
               { upsert: true }
             )
               .then(result => {
-                console.log(`Estos son los id ${inkItem._id}`);
+                console.log(`Estos son los id ${linkItem._id}`);
                 res.send(result)
               }).catch(error => console.error(error));
 

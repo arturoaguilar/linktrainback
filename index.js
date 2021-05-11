@@ -70,14 +70,15 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
       db.collection('userlinks').find({ order: { $gt: req.body.order } }).forEach(function (doc) {
 
-        db.collection('userlinks').updateMany({ _id: ObjectId(doc._id) }, { 
+       /* db.collection('userlinks').updateMany({ _id: ObjectId(doc._id) }, { 
         $set: {
           $inc: { order:1 }
         } 
-      })
-      }).then(doc => {
+      })*/
 
-        res.send(doc)
+      }).then(result => {
+
+        res.send(result)
 
 
       });

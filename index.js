@@ -75,10 +75,9 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           $inc: { order:1 }
         } 
       })
-      
-      }).then(result => {
+      }).then(doc => {
 
-        res.send(result)
+        res.send(doc)
 
 
       });

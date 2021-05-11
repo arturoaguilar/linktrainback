@@ -74,8 +74,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .then(result => {
           res.send(result)
 
-for (let index = 0; index < linkItem.length; index++) {
-  const element = linkItem[index];
+for (let index = 0; index < result.length; index++) {
+  const element = result[index];
   console.log("UNO");
   console.log(element);
 }

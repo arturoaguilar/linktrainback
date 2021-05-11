@@ -74,6 +74,12 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .then(result => {
           res.send(result)
 
+for (let index = 0; index < linkItem.length; index++) {
+  const element = linkItem[index];
+  console.log("UNO");
+  console.log(element);
+}
+
           for (let linkItem in result) {
             /*The update */
             db.collection('userlinks').findOneAndUpdate({ _id: ObjectId(linkItem._id) }, {

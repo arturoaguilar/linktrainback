@@ -88,7 +88,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
               .then(updateResult => {
                 console.log(`Estos son los id `);
                 console.log(linkItem);
-                res.send(updateResult)
+               // res.send(updateResult)
               }).catch(error => console.error(error));
 
             /*Fin del Update*/

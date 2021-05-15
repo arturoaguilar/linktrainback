@@ -78,9 +78,15 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           console.log(result)
           //res.send(result)
             console.log("the result link ");
-            console.log(result.length);
-            const allResults = JSON.stringify(result);
-          for (let linkItem in allResults) {
+           
+
+            for (i = 0; i < result.length; i++) {
+              linkOrder += result[i] + "<br>";
+              console.log(`${linkOrder} item`);
+              console.log(linkOrder);
+            }
+            
+          for (let linkItem in result) {
             /*The update */
             console.log("Created link");
             console.log(linkItem);

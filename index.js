@@ -82,7 +82,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
             
           for (let linkItem in result) {
             /*The update */
-            
+            console.log("Created link");
+            console.log(linkItem);
             db.collection('userlinks').findOneAndUpdate({ _id: linkItem._id }, {
                $inc: { order: 1 } 
             },

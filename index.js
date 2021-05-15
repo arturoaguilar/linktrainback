@@ -72,9 +72,10 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
       db.collection('userlinks').find({ order: { $gt: req.body.order }, _id: { $ne: ObjectId(req.body._id) } }).toArray()
         .then(result => {
-       /*   console.log("THE OTHER LINKS")
-          console.log("1) start order")
+          console.log("THE ORDER")
           console.log(req.body.order)
+       /*   console.log("THE OTHER LINKS")
+     
           console.log(result)
           //res.send(result)
             console.log("the result link ");*/

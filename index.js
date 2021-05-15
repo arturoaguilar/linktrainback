@@ -76,7 +76,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           console.log("1) start order")
           console.log(req.body.order)
           console.log(result)
-          res.send(result)
+          //res.send(result)
           for (let linkItem in result) {
             /*The update */
             

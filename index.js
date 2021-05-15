@@ -72,6 +72,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
       db.collection('userlinks').find({ order: { $gt: req.body.order } }).toArray()
         .then(result => {
+          console.log("THE OTHER LINKS");
           console.log(result);
           res.send(result)
           for (let linkItem in result) {

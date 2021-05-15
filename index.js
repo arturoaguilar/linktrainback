@@ -77,7 +77,9 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           console.log(req.body.order)
           console.log(result)
           //res.send(result)
-
+            console.log("the result link ");
+            console.log(result.length);
+            
           for (let linkItem in result) {
             /*The update */
             

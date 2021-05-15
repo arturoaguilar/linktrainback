@@ -73,7 +73,6 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       db.collection('userlinks').find({ order: { $gt: req.body.order } }).toArray()
         .then(result => {
           res.send(result)
-
           for (let linkItem in result) {
             /*The update */
             db.collection('userlinks').findOneAndUpdate({ _id: ObjectId(linkItem._id) }, {
@@ -92,23 +91,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
             /*Fin del Update*/
           }
 
-
-
-
-
         }).catch(error => console.error(error));
-
-
-      /*db.collection('userlinks').updateMany({ order: { $gt: req.body.order } }, {
-        $set: {
-          order: order + 1
-        }
-      }).then(result => {
-
-          res.send(result)
-
-
-        });*/
 
     })
 

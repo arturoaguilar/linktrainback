@@ -72,9 +72,11 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
       db.collection('userlinks').find({ order: { $gt: req.body.order } }).toArray()
         .then(result => {
+          console.log(result);
           res.send(result)
           for (let linkItem in result) {
             /*The update */
+            
             db.collection('userlinks').findOneAndUpdate({ _id: ObjectId(linkItem._id) }, {
               $set: {
                 order: linkItem.order+1

@@ -77,6 +77,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           console.log(req.body.order)
           console.log(result)
           //res.send(result)
+
           for (let linkItem in result) {
             /*The update */
             
@@ -93,7 +94,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
             /*Fin del Update*/
           }
-
+        res.send(result)
         }).catch(error => console.error(error));
 
     })

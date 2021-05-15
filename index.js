@@ -72,25 +72,26 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
       db.collection('userlinks').find({ order: { $gt: req.body.order } }).toArray()
         .then(result => {
-          console.log("THE OTHER LINKS")
+       /*   console.log("THE OTHER LINKS")
           console.log("1) start order")
           console.log(req.body.order)
           console.log(result)
           //res.send(result)
-            console.log("the result link ");
+            console.log("the result link ");*/
            
-
+/*
             for (i = 0; i < result.length; i++) {
               let linkOrder = result[i];
               console.log(`${linkOrder._id} item`);
               console.log(linkOrder);
             }
-            
-          for (let linkItem in result) {
+            */
+          for (i = 0; i < result.length; i++) {
             /*The update */
+            let linkOrder = result[i];
             console.log("Created link");
-            console.log(linkItem);
-            db.collection('userlinks').findOneAndUpdate({ _id: linkItem._id }, {
+            console.log(linkOrder);
+            db.collection('userlinks').findOneAndUpdate({ _id: linkOrder._id }, {
                $inc: { order: 1 } 
             },
               { upsert: true }

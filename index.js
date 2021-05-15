@@ -81,7 +81,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           for (let linkItem in result) {
             /*The update */
             
-            db.collection('userlinks').findOneAndUpdate({ _id: ObjectId(linkItem._id) }, {
+            db.collection('userlinks').findOneAndUpdate({ _id: linkItem._id }, {
                $inc: { order: 1 } 
             },
               { upsert: true }

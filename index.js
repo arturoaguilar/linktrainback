@@ -81,16 +81,14 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
             /*The update */
             
             db.collection('userlinks').findOneAndUpdate({ _id: ObjectId(linkItem._id) }, {
-              $set: {
-                order: linkItem.order+1
-              }
+               $inc: { order: -2 } 
             },
               { upsert: true }
             )
-              .then(resultam => {
+              .then(updateResult => {
                 console.log(`Estos son los id `);
                 console.log(linkItem);
-                res.send(resultam)
+                res.send(updateResult)
               }).catch(error => console.error(error));
 
             /*Fin del Update*/

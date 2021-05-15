@@ -82,7 +82,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
             for (i = 0; i < result.length; i++) {
               let linkOrder = result[i];
-              console.log(`${linkOrder} item`);
+              console.log(`${linkOrder_id} item`);
               console.log(linkOrder);
             }
             
